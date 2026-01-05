@@ -110,7 +110,34 @@ Configure 4 items:
 
 Find more icons at: https://icons.getbootstrap.com/
 
-#### 3.4 Upload Logo
+#### 3.4 What We Offer Section
+
+Go to **Appearance > Customize > What We Offer Section**:
+
+- **Section Title**: "What We Offer"
+- **Section Subtitle**: "Our Services"
+
+Configure 6 service items:
+
+**Service 1 (Example: Tourist Visa)**
+- Icon: `bi-passport` (or upload image)
+- Title: "Tourist Visa Extension"
+- Description: "Extend your stay in Bali with our tourist visa services"
+- Link: URL to service page or #
+
+**Service 2 (Example: Business Visa)**
+- Icon: `bi-briefcase`
+- Title: "Business Visa"
+- Description: "Professional business visa processing for entrepreneurs"
+- Link: URL to service page or #
+
+**Service 3-6**: Configure similarly
+
+**Note**: You can either use Bootstrap icons OR upload custom images for each service. Images will override icons if both are set.
+
+Find more icons at: https://icons.getbootstrap.com/
+
+#### 3.5 Upload Logo
 
 Go to **Appearance > Customize > Site Identity**:
 - Click "Select logo" and upload your logo (recommended: 200x50px)
@@ -144,31 +171,7 @@ Go to **Appearance > Customize > Site Identity**:
 
 ### Step 5: Add Content
 
-#### 5.1 Create Services Category
-
-1. Go to **Posts > Categories**
-2. Create a category named "Services"
-3. Add a description (optional)
-
-#### 5.2 Add Service Posts
-
-Create posts for each visa service:
-
-1. Go to **Posts > Add New**
-2. Title: E.g., "Tourist Visa Extension"
-3. Content: Service details
-4. Featured Image: Service image (400x300px recommended)
-5. Category: Check "Services"
-6. You can also add subcategories like:
-   - Tourist Visa
-   - Business Visa
-   - Social Visa
-   - Retirement Visa
-7. Click **Publish**
-
-Create at least 6 service posts for the homepage.
-
-#### 5.3 Add Blog Posts
+#### 5.1 Add Blog Posts
 
 1. Go to **Posts > Add New**
 2. Title: Your blog post title
@@ -181,7 +184,7 @@ Create at least 6 service posts for the homepage.
    - etc.
 6. Click **Publish**
 
-#### 5.4 Add Testimonials
+#### 5.2 Add Testimonials
 
 1. Go to **Testimonials > Add New** (in admin sidebar)
 2. Title: Customer name (e.g., "John Smith")
@@ -231,10 +234,11 @@ Install these plugins for enhanced functionality:
 - [ ] All pages created and templates assigned
 - [ ] Homepage and blog page set in Reading Settings
 - [ ] Hero carousel configured with images
+- [ ] What We Offer section configured (6 services)
+- [ ] Why Us section configured (4 advantages)
 - [ ] WhatsApp number configured
 - [ ] Logo uploaded
 - [ ] Primary and footer menus created
-- [ ] At least 6 service posts published
 - [ ] At least 3 blog posts published
 - [ ] At least 3 testimonials published
 - [ ] Footer widgets configured

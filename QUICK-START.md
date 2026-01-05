@@ -42,10 +42,11 @@ Your basic site is ready. View it at your WordPress URL.
 
 ## Next Steps (Optional)
 
-### Add Services
-**Posts > Add New**
-- Create posts with category "Services"
-- Add 6+ services to show on homepage
+### Configure What We Offer Section
+**Appearance > Customize > What We Offer Section**
+- Add 6 service items with icons/images
+- Set titles, descriptions, and links
+- Use Bootstrap icons (e.g., `bi-passport`, `bi-briefcase`)
 
 ### Add Testimonials
 **Testimonials > Add New**

@@ -110,37 +110,30 @@ get_header();
         </div>
 
         <div class="row g-4">
-            <?php
-            $services_query = new WP_Query(array(
-                'post_type' => 'post',
-                'category_name' => 'services',
-                'posts_per_page' => 6,
-            ));
-
-            if ($services_query->have_posts()) :
-                while ($services_query->have_posts()) : $services_query->the_post();
+            <?php for ($i = 1; $i <= 6; $i++) :
+                $item_image = get_theme_mod("offer_item_{$i}_image");
+                $item_icon = get_theme_mod("offer_item_{$i}_icon", 'bi-briefcase');
+                $item_title = get_theme_mod("offer_item_{$i}_title", "Service {$i}");
+                $item_description = get_theme_mod("offer_item_{$i}_description", 'Service description here');
+                $item_link = get_theme_mod("offer_item_{$i}_link", '#');
             ?>
                 <div class="col-lg-4 col-md-6">
                     <div class="card h-100">
-                        <?php if (has_post_thumbnail()) : ?>
-                            <img src="<?php the_post_thumbnail_url('service-thumb'); ?>" class="card-img-top" alt="<?php the_title_attribute(); ?>">
+                        <?php if ($item_image) : ?>
+                            <img src="<?php echo esc_url($item_image); ?>" class="card-img-top" alt="<?php echo esc_attr($item_title); ?>">
+                        <?php else : ?>
+                            <div class="card-img-top bg-gradient-primary d-flex align-items-center justify-content-center" style="height: 250px;">
+                                <i class="bi <?php echo esc_attr($item_icon); ?> display-1 text-white"></i>
+                            </div>
                         <?php endif; ?>
                         <div class="card-body">
-                            <h5 class="card-title"><?php the_title(); ?></h5>
-                            <p class="card-text"><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>
-                            <a href="<?php the_permalink(); ?>" class="btn btn-outline-primary">Learn More</a>
+                            <h5 class="card-title"><?php echo esc_html($item_title); ?></h5>
+                            <p class="card-text"><?php echo esc_html($item_description); ?></p>
+                            <a href="<?php echo esc_url($item_link); ?>" class="btn btn-outline-primary">Learn More</a>
                         </div>
                     </div>
                 </div>
-            <?php
-                endwhile;
-                wp_reset_postdata();
-            else :
-            ?>
-                <div class="col-12 text-center">
-                    <p>No services found. Please add posts under the "Services" category.</p>
-                </div>
-            <?php endif; ?>
+            <?php endfor; ?>
         </div>
     </div>
 </section>

@@ -237,6 +237,44 @@ function apply_visa_bali_customize_register($wp_customize) {
         'type' => 'text',
     ));
 
+    // What We Offer Items
+    for ($i = 1; $i <= 6; $i++) {
+        $wp_customize->add_setting("offer_item_{$i}_icon", array('default' => 'bi-briefcase'));
+        $wp_customize->add_control("offer_item_{$i}_icon", array(
+            'label' => sprintf(__('Service %d Icon (Bootstrap Icon class)', 'apply-visa-bali'), $i),
+            'section' => 'offer_section',
+            'type' => 'text',
+            'description' => __('e.g., bi-briefcase, bi-passport, bi-airplane. See https://icons.getbootstrap.com/', 'apply-visa-bali'),
+        ));
+
+        $wp_customize->add_setting("offer_item_{$i}_image", array('default' => ''));
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "offer_item_{$i}_image", array(
+            'label' => sprintf(__('Service %d Image (Optional - overrides icon)', 'apply-visa-bali'), $i),
+            'section' => 'offer_section',
+        )));
+
+        $wp_customize->add_setting("offer_item_{$i}_title", array('default' => "Service {$i}"));
+        $wp_customize->add_control("offer_item_{$i}_title", array(
+            'label' => sprintf(__('Service %d Title', 'apply-visa-bali'), $i),
+            'section' => 'offer_section',
+            'type' => 'text',
+        ));
+
+        $wp_customize->add_setting("offer_item_{$i}_description", array('default' => 'Service description here'));
+        $wp_customize->add_control("offer_item_{$i}_description", array(
+            'label' => sprintf(__('Service %d Description', 'apply-visa-bali'), $i),
+            'section' => 'offer_section',
+            'type' => 'textarea',
+        ));
+
+        $wp_customize->add_setting("offer_item_{$i}_link", array('default' => '#'));
+        $wp_customize->add_control("offer_item_{$i}_link", array(
+            'label' => sprintf(__('Service %d Link', 'apply-visa-bali'), $i),
+            'section' => 'offer_section',
+            'type' => 'url',
+        ));
+    }
+
     // Why Us Section
     $wp_customize->add_section('why_us_section', array(
         'title' => __('Why Us Section', 'apply-visa-bali'),
