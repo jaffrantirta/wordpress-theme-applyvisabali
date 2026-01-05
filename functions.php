@@ -339,6 +339,50 @@ function apply_visa_bali_customize_register($wp_customize) {
         'type' => 'text',
     ));
 
+    // Testimonial Items
+    for ($i = 1; $i <= 6; $i++) {
+        $wp_customize->add_setting("testimonial_item_{$i}_name", array('default' => "Customer {$i}"));
+        $wp_customize->add_control("testimonial_item_{$i}_name", array(
+            'label' => sprintf(__('Testimonial %d - Customer Name', 'apply-visa-bali'), $i),
+            'section' => 'testimonials_section',
+            'type' => 'text',
+        ));
+
+        $wp_customize->add_setting("testimonial_item_{$i}_image", array('default' => ''));
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "testimonial_item_{$i}_image", array(
+            'label' => sprintf(__('Testimonial %d - Customer Photo (Optional)', 'apply-visa-bali'), $i),
+            'section' => 'testimonials_section',
+        )));
+
+        $wp_customize->add_setting("testimonial_item_{$i}_text", array('default' => 'Excellent service! Highly recommend.'));
+        $wp_customize->add_control("testimonial_item_{$i}_text", array(
+            'label' => sprintf(__('Testimonial %d - Review Text', 'apply-visa-bali'), $i),
+            'section' => 'testimonials_section',
+            'type' => 'textarea',
+        ));
+
+        $wp_customize->add_setting("testimonial_item_{$i}_rating", array('default' => '5'));
+        $wp_customize->add_control("testimonial_item_{$i}_rating", array(
+            'label' => sprintf(__('Testimonial %d - Star Rating (1-5)', 'apply-visa-bali'), $i),
+            'section' => 'testimonials_section',
+            'type' => 'select',
+            'choices' => array(
+                '5' => '5 Stars',
+                '4' => '4 Stars',
+                '3' => '3 Stars',
+                '2' => '2 Stars',
+                '1' => '1 Star',
+            ),
+        ));
+
+        $wp_customize->add_setting("testimonial_item_{$i}_position", array('default' => ''));
+        $wp_customize->add_control("testimonial_item_{$i}_position", array(
+            'label' => sprintf(__('Testimonial %d - Position/Company (Optional)', 'apply-visa-bali'), $i),
+            'section' => 'testimonials_section',
+            'type' => 'text',
+        ));
+    }
+
     // WhatsApp
     $wp_customize->add_section('whatsapp_section', array(
         'title' => __('WhatsApp Settings', 'apply-visa-bali'),

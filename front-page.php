@@ -225,41 +225,58 @@ get_header();
 
         <div class="row g-4">
             <?php
-            $testimonials_query = new WP_Query(array(
-                'post_type' => 'testimonial',
-                'posts_per_page' => 3,
-            ));
+            $testimonial_count = 0;
+            for ($i = 1; $i <= 6; $i++) :
+                $name = get_theme_mod("testimonial_item_{$i}_name", "Customer {$i}");
+                $text = get_theme_mod("testimonial_item_{$i}_text", '');
+                $image = get_theme_mod("testimonial_item_{$i}_image", '');
+                $rating = get_theme_mod("testimonial_item_{$i}_rating", '5');
+                $position = get_theme_mod("testimonial_item_{$i}_position", '');
 
-            if ($testimonials_query->have_posts()) :
-                while ($testimonials_query->have_posts()) : $testimonials_query->the_post();
+                // Only show if there's actual testimonial text
+                if (empty($text) || $text == 'Excellent service! Highly recommend.') {
+                    continue;
+                }
+                $testimonial_count++;
             ?>
                 <div class="col-lg-4 col-md-6">
                     <div class="card testimonial-card h-100">
                         <div class="card-body">
                             <div class="stars mb-3">
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
+                                <?php
+                                for ($star = 1; $star <= 5; $star++) {
+                                    if ($star <= intval($rating)) {
+                                        echo '<i class="bi bi-star-fill text-warning"></i>';
+                                    } else {
+                                        echo '<i class="bi bi-star text-warning"></i>';
+                                    }
+                                }
+                                ?>
                             </div>
-                            <p class="card-text"><?php the_content(); ?></p>
-                            <div class="testimonial-author mt-3">
-                                <?php if (has_post_thumbnail()) : ?>
-                                    <img src="<?php the_post_thumbnail_url('thumbnail'); ?>" class="rounded-circle me-2" width="50" height="50" alt="<?php the_title_attribute(); ?>">
+                            <p class="card-text">"<?php echo esc_html($text); ?>"</p>
+                            <div class="testimonial-author mt-3 d-flex align-items-center">
+                                <?php if ($image) : ?>
+                                    <img src="<?php echo esc_url($image); ?>" class="rounded-circle me-2" width="50" height="50" alt="<?php echo esc_attr($name); ?>">
+                                <?php else : ?>
+                                    <div class="rounded-circle me-2 bg-primary text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                        <i class="bi bi-person-fill"></i>
+                                    </div>
                                 <?php endif; ?>
-                                <strong><?php the_title(); ?></strong>
+                                <div>
+                                    <strong class="d-block"><?php echo esc_html($name); ?></strong>
+                                    <?php if ($position) : ?>
+                                        <small class="text-muted"><?php echo esc_html($position); ?></small>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php
-                endwhile;
-                wp_reset_postdata();
-            else :
-            ?>
+            <?php endfor; ?>
+
+            <?php if ($testimonial_count == 0) : ?>
                 <div class="col-12 text-center">
-                    <p>No testimonials found. Please add testimonials in the admin panel.</p>
+                    <p>No testimonials found. Please configure testimonials in Appearance > Customize > Testimonials Section.</p>
                 </div>
             <?php endif; ?>
         </div>

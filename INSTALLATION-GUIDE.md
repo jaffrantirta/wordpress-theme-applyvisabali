@@ -137,7 +137,27 @@ Configure 6 service items:
 
 Find more icons at: https://icons.getbootstrap.com/
 
-#### 3.5 Upload Logo
+#### 3.5 Testimonials Section
+
+Go to **Appearance > Customize > Testimonials Section**:
+
+- **Section Title**: "What Our Clients Say"
+- **Section Subtitle**: "Testimonials"
+
+Configure up to 6 testimonials:
+
+**Testimonial 1 (Example):**
+- Customer Name: "John Smith"
+- Customer Photo: Upload image (150x150px) - optional
+- Review Text: "Excellent service! They helped me extend my visa quickly and professionally."
+- Star Rating: 5 Stars
+- Position/Company: "Digital Nomad, USA" - optional
+
+**Testimonial 2-6**: Configure similarly
+
+**Note**: Testimonials will only show if you add review text. Leave blank to hide.
+
+#### 3.6 Upload Logo
 
 Go to **Appearance > Customize > Site Identity**:
 - Click "Select logo" and upload your logo (recommended: 200x50px)
@@ -184,17 +204,7 @@ Go to **Appearance > Customize > Site Identity**:
    - etc.
 6. Click **Publish**
 
-#### 5.2 Add Testimonials
-
-1. Go to **Testimonials > Add New** (in admin sidebar)
-2. Title: Customer name (e.g., "John Smith")
-3. Content: The testimonial text
-4. Featured Image: Customer photo (optional, 150x150px recommended)
-5. Click **Publish**
-
-Add at least 3 testimonials for the homepage.
-
-### Step 6: Configure Footer Widgets
+### Step 5: Configure Footer Widgets
 
 1. Go to **Appearance > Widgets**
 
@@ -219,7 +229,7 @@ Add at least 3 testimonials for the homepage.
   📱 +62 812 3456 7890
   ```
 
-### Step 7: Recommended Plugins
+### Step 6: Recommended Plugins
 
 Install these plugins for enhanced functionality:
 
@@ -229,18 +239,18 @@ Install these plugins for enhanced functionality:
 4. **Wordfence Security** - For security
 5. **Akismet Anti-Spam** - For spam protection
 
-### Step 8: Final Checks
+### Step 7: Final Checks
 
 - [ ] All pages created and templates assigned
 - [ ] Homepage and blog page set in Reading Settings
 - [ ] Hero carousel configured with images
 - [ ] What We Offer section configured (6 services)
 - [ ] Why Us section configured (4 advantages)
+- [ ] Testimonials section configured (3-6 testimonials)
 - [ ] WhatsApp number configured
 - [ ] Logo uploaded
 - [ ] Primary and footer menus created
 - [ ] At least 3 blog posts published
-- [ ] At least 3 testimonials published
 - [ ] Footer widgets configured
 
 ## Customization Tips

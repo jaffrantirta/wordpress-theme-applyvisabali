@@ -236,7 +236,17 @@
 }
 
 .footer .widget-title {
-    color: white;
+    color: white !important;
+}
+
+.footer h1, .footer h2, .footer h3,
+.footer h4, .footer h5, .footer h6 {
+    color: white !important;
+}
+
+.footer .footer-widget h5 {
+    color: white !important;
+    font-weight: 600;
 }
 
 .footer a {
@@ -251,6 +261,14 @@
 
 .footer .social-links a {
     font-size: 1.5rem;
+}
+
+.footer p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer ul li {
+    color: rgba(255, 255, 255, 0.8);
 }
 
 /* Navigation */
