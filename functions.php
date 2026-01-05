@@ -340,8 +340,30 @@ function apply_visa_bali_customize_register($wp_customize) {
     ));
 
     // Testimonial Items
+    $testimonial_defaults = array(
+        1 => array(
+            'name' => 'Sarah Johnson',
+            'text' => 'Excellent service! They helped me extend my tourist visa quickly and professionally. The team was very responsive and made the whole process stress-free.',
+            'position' => 'Tourist from Australia'
+        ),
+        2 => array(
+            'name' => 'Michael Chen',
+            'text' => 'Very helpful and knowledgeable team. Got my business visa processed in just a few days. Highly recommend their services!',
+            'position' => 'Entrepreneur, Singapore'
+        ),
+        3 => array(
+            'name' => 'Emma Williams',
+            'text' => 'Professional and reliable visa service. They guided me through every step and answered all my questions promptly. Five stars!',
+            'position' => 'Digital Nomad, UK'
+        ),
+    );
+
     for ($i = 1; $i <= 6; $i++) {
-        $wp_customize->add_setting("testimonial_item_{$i}_name", array('default' => "Customer {$i}"));
+        $default_name = isset($testimonial_defaults[$i]) ? $testimonial_defaults[$i]['name'] : "Customer {$i}";
+        $default_text = isset($testimonial_defaults[$i]) ? $testimonial_defaults[$i]['text'] : 'Excellent service! Highly recommend.';
+        $default_position = isset($testimonial_defaults[$i]) ? $testimonial_defaults[$i]['position'] : '';
+
+        $wp_customize->add_setting("testimonial_item_{$i}_name", array('default' => $default_name));
         $wp_customize->add_control("testimonial_item_{$i}_name", array(
             'label' => sprintf(__('Testimonial %d - Customer Name', 'apply-visa-bali'), $i),
             'section' => 'testimonials_section',
@@ -354,7 +376,7 @@ function apply_visa_bali_customize_register($wp_customize) {
             'section' => 'testimonials_section',
         )));
 
-        $wp_customize->add_setting("testimonial_item_{$i}_text", array('default' => 'Excellent service! Highly recommend.'));
+        $wp_customize->add_setting("testimonial_item_{$i}_text", array('default' => $default_text));
         $wp_customize->add_control("testimonial_item_{$i}_text", array(
             'label' => sprintf(__('Testimonial %d - Review Text', 'apply-visa-bali'), $i),
             'section' => 'testimonials_section',
@@ -375,7 +397,7 @@ function apply_visa_bali_customize_register($wp_customize) {
             ),
         ));
 
-        $wp_customize->add_setting("testimonial_item_{$i}_position", array('default' => ''));
+        $wp_customize->add_setting("testimonial_item_{$i}_position", array('default' => $default_position));
         $wp_customize->add_control("testimonial_item_{$i}_position", array(
             'label' => sprintf(__('Testimonial %d - Position/Company (Optional)', 'apply-visa-bali'), $i),
             'section' => 'testimonials_section',

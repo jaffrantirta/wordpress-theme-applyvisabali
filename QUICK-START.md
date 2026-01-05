@@ -48,11 +48,11 @@ Your basic site is ready. View it at your WordPress URL.
 - Set titles, descriptions, and links
 - Use Bootstrap icons (e.g., `bi-passport`, `bi-briefcase`)
 
-### Add Testimonials
-**Testimonials > Add New**
-- Customer name as title
-- Testimonial text as content
-- Add 3+ testimonials
+### Customize Testimonials (Optional)
+**Appearance > Customize > Testimonials Section**
+- 3 testimonials shown by default with sample content
+- Edit names, photos, reviews, and ratings
+- Customize in the WordPress Customizer
 
 ### Customize Colors
 Edit `apply-visa-bali/style.css` line 15:

@@ -8,7 +8,9 @@
   - Customer name, photo, review text
   - Star rating selector (1-5 stars)
   - Optional position/company field
-  - Only displays testimonials with actual content
+  - Shows 3 default testimonials with realistic sample content
+  - Default testimonials: Sarah Johnson, Michael Chen, Emma Williams
+  - Automatic avatar placeholder if no photo uploaded
 
 - **What We Offer Section Customization**: Added customizer controls for services
   - 6 customizable service items
