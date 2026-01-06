@@ -17,15 +17,46 @@
                 <?php if (is_active_sidebar('footer-2')) : ?>
                     <?php dynamic_sidebar('footer-2'); ?>
                 <?php else : ?>
-                    <h5 class="mb-3">Quick Links</h5>
                     <?php
-                    wp_nav_menu(array(
-                        'theme_location' => 'footer',
-                        'container' => false,
-                        'menu_class' => 'list-unstyled',
-                        'fallback_cb' => '__return_false',
-                    ));
+                    // Check if any custom quick links are set
+                    $has_custom_links = false;
+                    for ($i = 1; $i <= 8; $i++) {
+                        if (get_theme_mod("footer_quick_link_{$i}_title") && get_theme_mod("footer_quick_link_{$i}_url")) {
+                            $has_custom_links = true;
+                            break;
+                        }
+                    }
+
+                    if ($has_custom_links) :
                     ?>
+                        <h5 class="mb-3"><?php echo esc_html(get_theme_mod('footer_quick_links_title', 'Quick Links')); ?></h5>
+                        <ul class="list-unstyled">
+                            <?php for ($i = 1; $i <= 8; $i++) :
+                                $link_title = get_theme_mod("footer_quick_link_{$i}_title");
+                                $link_url = get_theme_mod("footer_quick_link_{$i}_url");
+                                if ($link_title && $link_url) :
+                            ?>
+                                <li class="mb-2">
+                                    <a href="<?php echo esc_url($link_url); ?>" class="text-light text-decoration-none">
+                                        <i class="bi bi-chevron-right me-1"></i><?php echo esc_html($link_title); ?>
+                                    </a>
+                                </li>
+                            <?php
+                                endif;
+                            endfor;
+                            ?>
+                        </ul>
+                    <?php else : ?>
+                        <h5 class="mb-3">Quick Links</h5>
+                        <?php
+                        wp_nav_menu(array(
+                            'theme_location' => 'footer',
+                            'container' => false,
+                            'menu_class' => 'list-unstyled',
+                            'fallback_cb' => '__return_false',
+                        ));
+                        ?>
+                    <?php endif; ?>
                 <?php endif; ?>
             </div>
 

@@ -540,6 +540,46 @@ function apply_visa_bali_customize_register($wp_customize) {
         'type' => 'url',
         'description' => __('Leave empty to hide the icon', 'apply-visa-bali'),
     ));
+
+    // Quick Links Section
+    $wp_customize->add_section('footer_quick_links', array(
+        'title' => __('Footer Quick Links', 'apply-visa-bali'),
+        'priority' => 36,
+        'description' => __('Add custom links to the Quick Links section in footer. Leave title empty to hide the link.', 'apply-visa-bali'),
+    ));
+
+    $wp_customize->add_setting('footer_quick_links_title', array(
+        'default' => 'Quick Links',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('footer_quick_links_title', array(
+        'label' => __('Quick Links Section Title', 'apply-visa-bali'),
+        'section' => 'footer_quick_links',
+        'type' => 'text',
+    ));
+
+    // Quick Links Items (up to 8 links)
+    for ($i = 1; $i <= 8; $i++) {
+        $wp_customize->add_setting("footer_quick_link_{$i}_title", array(
+            'default' => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+        $wp_customize->add_control("footer_quick_link_{$i}_title", array(
+            'label' => sprintf(__('Link %d - Title', 'apply-visa-bali'), $i),
+            'section' => 'footer_quick_links',
+            'type' => 'text',
+        ));
+
+        $wp_customize->add_setting("footer_quick_link_{$i}_url", array(
+            'default' => '',
+            'sanitize_callback' => 'esc_url_raw',
+        ));
+        $wp_customize->add_control("footer_quick_link_{$i}_url", array(
+            'label' => sprintf(__('Link %d - URL', 'apply-visa-bali'), $i),
+            'section' => 'footer_quick_links',
+            'type' => 'url',
+        ));
+    }
 }
 add_action('customize_register', 'apply_visa_bali_customize_register');
 
