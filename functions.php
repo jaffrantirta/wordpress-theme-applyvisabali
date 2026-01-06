@@ -424,6 +424,122 @@ function apply_visa_bali_customize_register($wp_customize) {
         'section' => 'whatsapp_section',
         'type' => 'textarea',
     ));
+
+    // Footer Settings
+    $wp_customize->add_section('footer_section', array(
+        'title' => __('Footer Settings', 'apply-visa-bali'),
+        'priority' => 35,
+    ));
+
+    // Copyright Text
+    $wp_customize->add_setting('footer_copyright_text', array(
+        'default' => 'All rights reserved.',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('footer_copyright_text', array(
+        'label' => __('Copyright Text', 'apply-visa-bali'),
+        'section' => 'footer_section',
+        'type' => 'text',
+        'description' => __('Text shown in the copyright section. Site name and year will be added automatically.', 'apply-visa-bali'),
+    ));
+
+    // Contact Information
+    $wp_customize->add_setting('footer_address', array(
+        'default' => 'Bali, Indonesia',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('footer_address', array(
+        'label' => __('Address', 'apply-visa-bali'),
+        'section' => 'footer_section',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('footer_email', array(
+        'default' => 'info@applyvisabali.com',
+        'sanitize_callback' => 'sanitize_email',
+    ));
+    $wp_customize->add_control('footer_email', array(
+        'label' => __('Email Address', 'apply-visa-bali'),
+        'section' => 'footer_section',
+        'type' => 'email',
+    ));
+
+    $wp_customize->add_setting('footer_phone', array(
+        'default' => '+62 xxx xxxx xxxx',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('footer_phone', array(
+        'label' => __('Phone Number', 'apply-visa-bali'),
+        'section' => 'footer_section',
+        'type' => 'text',
+    ));
+
+    // Social Media Links
+    $wp_customize->add_setting('footer_facebook_url', array(
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('footer_facebook_url', array(
+        'label' => __('Facebook URL', 'apply-visa-bali'),
+        'section' => 'footer_section',
+        'type' => 'url',
+        'description' => __('Leave empty to hide the icon', 'apply-visa-bali'),
+    ));
+
+    $wp_customize->add_setting('footer_instagram_url', array(
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('footer_instagram_url', array(
+        'label' => __('Instagram URL', 'apply-visa-bali'),
+        'section' => 'footer_section',
+        'type' => 'url',
+        'description' => __('Leave empty to hide the icon', 'apply-visa-bali'),
+    ));
+
+    $wp_customize->add_setting('footer_twitter_url', array(
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('footer_twitter_url', array(
+        'label' => __('Twitter/X URL', 'apply-visa-bali'),
+        'section' => 'footer_section',
+        'type' => 'url',
+        'description' => __('Leave empty to hide the icon', 'apply-visa-bali'),
+    ));
+
+    $wp_customize->add_setting('footer_linkedin_url', array(
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('footer_linkedin_url', array(
+        'label' => __('LinkedIn URL', 'apply-visa-bali'),
+        'section' => 'footer_section',
+        'type' => 'url',
+        'description' => __('Leave empty to hide the icon', 'apply-visa-bali'),
+    ));
+
+    $wp_customize->add_setting('footer_youtube_url', array(
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('footer_youtube_url', array(
+        'label' => __('YouTube URL', 'apply-visa-bali'),
+        'section' => 'footer_section',
+        'type' => 'url',
+        'description' => __('Leave empty to hide the icon', 'apply-visa-bali'),
+    ));
+
+    $wp_customize->add_setting('footer_tiktok_url', array(
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('footer_tiktok_url', array(
+        'label' => __('TikTok URL', 'apply-visa-bali'),
+        'section' => 'footer_section',
+        'type' => 'url',
+        'description' => __('Leave empty to hide the icon', 'apply-visa-bali'),
+    ));
 }
 add_action('customize_register', 'apply_visa_bali_customize_register');
 
