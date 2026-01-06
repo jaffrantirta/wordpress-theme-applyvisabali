@@ -187,11 +187,6 @@
     color: var(--text-color);
 }
 
-/* Author Bio */
-.author-bio {
-    border: 2px solid #e2e8f0;
-}
-
 /* Pagination */
 .pagination {
     gap: 5px;

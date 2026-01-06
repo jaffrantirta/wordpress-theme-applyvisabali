@@ -27,9 +27,6 @@ get_header();
                             <span class="text-muted">
                                 <i class="bi bi-calendar me-1"></i><?php echo get_the_date(); ?>
                             </span>
-                            <span class="text-muted ms-3">
-                                <i class="bi bi-person me-1"></i><?php the_author(); ?>
-                            </span>
                         </div>
                         <h1 class="display-5 fw-bold mb-4"><?php the_title(); ?></h1>
                     </div>
@@ -96,19 +93,6 @@ get_header();
                                     <i class="bi bi-whatsapp me-1"></i> WhatsApp
                                 </a>
                                 <?php endif; ?>
-                            </div>
-                        </div>
-
-                        <!-- Author Bio -->
-                        <div class="author-bio mt-5 p-4 bg-light rounded-custom">
-                            <div class="d-flex align-items-center">
-                                <div class="author-avatar me-3">
-                                    <?php echo get_avatar(get_the_author_meta('ID'), 80, '', '', array('class' => 'rounded-circle')); ?>
-                                </div>
-                                <div class="author-info">
-                                    <h5 class="mb-1"><?php the_author(); ?></h5>
-                                    <p class="text-muted mb-0"><?php echo get_the_author_meta('description'); ?></p>
-                                </div>
                             </div>
                         </div>
 

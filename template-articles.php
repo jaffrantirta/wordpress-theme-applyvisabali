@@ -84,11 +84,8 @@ get_header();
                                 </a>
                             </h5>
                             <p class="card-text"><?php echo wp_trim_words(get_the_excerpt(), 20); ?></p>
-                            <div class="article-footer d-flex justify-content-between align-items-center">
+                            <div class="article-footer">
                                 <a href="<?php the_permalink(); ?>" class="btn btn-outline-primary btn-sm">Read More</a>
-                                <div class="author-info text-muted small">
-                                    <i class="bi bi-person me-1"></i><?php the_author(); ?>
-                                </div>
                             </div>
                         </div>
                     </article>
