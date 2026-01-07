@@ -18,46 +18,6 @@ get_header();
 
 <section class="section services-section">
     <div class="container">
-        <!-- Category Filter -->
-        <div class="row mb-5">
-            <div class="col-lg-12">
-                <div class="category-filter text-center">
-                    <div class="btn-group flex-wrap" role="group">
-                        <a href="<?php echo get_permalink(); ?>" class="btn btn-outline-primary <?php echo !isset($_GET['service-category']) ? 'active' : ''; ?>">All Services</a>
-                        <?php
-                        $service_categories = get_categories(array(
-                            'taxonomy' => 'category',
-                            'hide_empty' => true,
-                            'include' => array(get_cat_ID('services')),
-                        ));
-
-                        // Get subcategories of services
-                        $services_cat_id = get_cat_ID('services');
-                        $subcategories = get_categories(array(
-                            'taxonomy' => 'category',
-                            'child_of' => $services_cat_id,
-                            'hide_empty' => true,
-                        ));
-
-                        // If no subcategories, show all categories except services parent
-                        $display_categories = !empty($subcategories) ? $subcategories : get_categories(array(
-                            'taxonomy' => 'category',
-                            'hide_empty' => true,
-                        ));
-
-                        foreach ($display_categories as $category) :
-                            if ($category->slug == 'services') continue;
-                            $active_class = (isset($_GET['service-category']) && $_GET['service-category'] == $category->slug) ? 'active' : '';
-                        ?>
-                            <a href="<?php echo add_query_arg('service-category', $category->slug, get_permalink()); ?>" class="btn btn-outline-primary <?php echo $active_class; ?>">
-                                <?php echo esc_html($category->name); ?>
-                            </a>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Services Grid -->
         <div class="row g-4">
             <?php
@@ -68,11 +28,6 @@ get_header();
                 'paged' => $paged,
                 'category_name' => 'services',
             );
-
-            // Filter by service category if set
-            if (isset($_GET['service-category']) && !empty($_GET['service-category'])) {
-                $args['category_name'] = sanitize_text_field($_GET['service-category']);
-            }
 
             $services_query = new WP_Query($args);
 

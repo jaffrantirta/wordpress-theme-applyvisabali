@@ -70,13 +70,26 @@ get_header();
                         <?php endif; ?>
                         <div class="card-body">
                             <div class="article-meta mb-3">
-                                <span class="badge bg-primary me-2"><?php echo get_the_date(); ?></span>
-                                <?php
-                                $categories = get_the_category();
-                                if (!empty($categories)) :
-                                    echo '<span class="badge bg-secondary">' . esc_html($categories[0]->name) . '</span>';
-                                endif;
-                                ?>
+                                <div class="mb-2">
+                                    <span class="badge bg-primary"><?php echo get_the_date(); ?></span>
+                                </div>
+                                <div class="article-categories">
+                                    <?php
+                                    $categories = get_the_category();
+                                    if (!empty($categories)) :
+                                        $display_categories = array_slice($categories, 0, 2);
+                                        $remaining_count = count($categories) - 2;
+
+                                        foreach ($display_categories as $category) :
+                                            echo '<span class="badge bg-secondary badge-sm me-1 mb-1">' . esc_html($category->name) . '</span>';
+                                        endforeach;
+
+                                        if ($remaining_count > 0) :
+                                            echo '<span class="badge bg-secondary badge-sm mb-1">+' . $remaining_count . '</span>';
+                                        endif;
+                                    endif;
+                                    ?>
+                                </div>
                             </div>
                             <h5 class="card-title">
                                 <a href="<?php the_permalink(); ?>" class="text-decoration-none text-dark">

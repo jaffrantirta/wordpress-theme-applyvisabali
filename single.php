@@ -74,27 +74,66 @@ get_header();
                         <!-- Share Buttons -->
                         <div class="post-share mt-5 pt-4 border-top">
                             <h5 class="mb-3">Share this post:</h5>
-                            <div class="share-buttons">
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink()); ?>" target="_blank" class="btn btn-outline-primary me-2">
+                            <div class="share-buttons d-flex flex-wrap gap-2">
+                                <?php
+                                $post_url = urlencode(get_permalink());
+                                $post_title = urlencode(get_the_title());
+                                $share_text = $post_title . ' - ' . get_permalink();
+                                ?>
+
+                                <!-- Facebook -->
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $post_url; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
                                     <i class="bi bi-facebook me-1"></i> Facebook
                                 </a>
-                                <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>" target="_blank" class="btn btn-outline-primary me-2">
-                                    <i class="bi bi-twitter me-1"></i> Twitter
-                                </a>
-                                <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo urlencode(get_permalink()); ?>" target="_blank" class="btn btn-outline-primary me-2">
-                                    <i class="bi bi-linkedin me-1"></i> LinkedIn
-                                </a>
-                                <?php
-                                $whatsapp_number = get_theme_mod('whatsapp_number', '');
-                                if ($whatsapp_number) :
-                                    $whatsapp_text = get_the_title() . ' - ' . get_permalink();
-                                ?>
-                                <a href="https://wa.me/?text=<?php echo urlencode($whatsapp_text); ?>" target="_blank" class="btn btn-outline-primary">
+
+                                <!-- WhatsApp -->
+                                <a href="https://wa.me/?text=<?php echo urlencode($share_text); ?>" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
                                     <i class="bi bi-whatsapp me-1"></i> WhatsApp
                                 </a>
-                                <?php endif; ?>
+
+                                <!-- X (Twitter) -->
+                                <a href="https://twitter.com/intent/tweet?url=<?php echo $post_url; ?>&text=<?php echo $post_title; ?>" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-twitter-x me-1"></i> X
+                                </a>
+
+                                <!-- Threads -->
+                                <a href="https://threads.net/intent/post?text=<?php echo urlencode($share_text); ?>" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-threads me-1"></i> Threads
+                                </a>
+
+                                <!-- Instagram Stories (mobile only) -->
+                                <a href="instagram-stories://share?backgroundImage=<?php echo urlencode(get_the_post_thumbnail_url()); ?>&stickerImage=<?php echo urlencode(get_the_post_thumbnail_url()); ?>" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm d-md-none">
+                                    <i class="bi bi-instagram me-1"></i> Stories
+                                </a>
+
+                                <!-- Copy Link -->
+                                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="copyPostLink()" title="Copy link">
+                                    <i class="bi bi-link-45deg me-1"></i> Copy Link
+                                </button>
                             </div>
                         </div>
+
+                        <script>
+                        function copyPostLink() {
+                            const url = '<?php echo get_permalink(); ?>';
+                            navigator.clipboard.writeText(url).then(function() {
+                                // Change button text temporarily
+                                const btn = event.target.closest('button');
+                                const originalHTML = btn.innerHTML;
+                                btn.innerHTML = '<i class="bi bi-check-lg me-1"></i> Copied!';
+                                btn.classList.remove('btn-outline-secondary');
+                                btn.classList.add('btn-success');
+
+                                setTimeout(function() {
+                                    btn.innerHTML = originalHTML;
+                                    btn.classList.remove('btn-success');
+                                    btn.classList.add('btn-outline-secondary');
+                                }, 2000);
+                            }, function(err) {
+                                console.error('Could not copy text: ', err);
+                            });
+                        }
+                        </script>
 
                         <!-- Navigation -->
                         <div class="post-navigation mt-5 pt-4 border-top">
@@ -164,7 +203,28 @@ get_header();
                             <img src="<?php the_post_thumbnail_url('blog-thumb'); ?>" class="card-img-top" alt="<?php the_title_attribute(); ?>">
                         <?php endif; ?>
                         <div class="card-body">
-                            <span class="badge bg-primary mb-2"><?php echo get_the_date(); ?></span>
+                            <div class="article-meta mb-3">
+                                <div class="mb-2">
+                                    <span class="badge bg-primary"><?php echo get_the_date(); ?></span>
+                                </div>
+                                <div class="article-categories">
+                                    <?php
+                                    $post_categories = get_the_category();
+                                    if (!empty($post_categories)) :
+                                        $display_cats = array_slice($post_categories, 0, 2);
+                                        $remaining = count($post_categories) - 2;
+
+                                        foreach ($display_cats as $cat) :
+                                            echo '<span class="badge bg-secondary badge-sm me-1 mb-1">' . esc_html($cat->name) . '</span>';
+                                        endforeach;
+
+                                        if ($remaining > 0) :
+                                            echo '<span class="badge bg-secondary badge-sm mb-1">+' . $remaining . '</span>';
+                                        endif;
+                                    endif;
+                                    ?>
+                                </div>
+                            </div>
                             <h5 class="card-title"><?php the_title(); ?></h5>
                             <p class="card-text"><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>
                             <a href="<?php the_permalink(); ?>" class="btn btn-outline-primary">Read More</a>

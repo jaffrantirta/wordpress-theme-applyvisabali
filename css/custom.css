@@ -109,6 +109,26 @@
     color: var(--primary-color) !important;
 }
 
+/* Article Meta */
+.article-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.article-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+/* Smaller Badge */
+.badge-sm {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    font-weight: 500;
+}
+
 /* Category Filter */
 .category-filter .btn-group {
     gap: 10px;
@@ -135,7 +155,30 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Contact Info Items */
+/* Contact Cards */
+.contact-card {
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card .icon-box i {
+    font-size: 4rem;
+}
+
+.business-hours {
+    font-size: 0.9rem;
+}
+
+.business-hours .border-bottom {
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Contact Info Items (legacy) */
 .contact-info-item {
     padding: 20px;
     border-radius: var(--border-radius-sm);

@@ -45,10 +45,10 @@ get_header();
                 <div class="card h-100">
                     <div class="card-body p-5">
                         <div class="icon-box mb-4">
-                            <i class="bi bi-bullseye display-4 text-primary"></i>
+                            <i class="<?php echo esc_attr(get_theme_mod('about_mission_icon', 'bi-bullseye')); ?> display-4 text-primary"></i>
                         </div>
-                        <h3 class="mb-3">Our Mission</h3>
-                        <p>To provide exceptional visa services that make international travel accessible and stress-free for everyone seeking to visit or stay in Bali and Indonesia.</p>
+                        <h3 class="mb-3"><?php echo esc_html(get_theme_mod('about_mission_title', 'Our Mission')); ?></h3>
+                        <p><?php echo esc_html(get_theme_mod('about_mission_text', 'To provide exceptional visa services that make international travel accessible and stress-free for everyone seeking to visit or stay in Bali and Indonesia.')); ?></p>
                     </div>
                 </div>
             </div>
@@ -56,10 +56,10 @@ get_header();
                 <div class="card h-100">
                     <div class="card-body p-5">
                         <div class="icon-box mb-4">
-                            <i class="bi bi-eye display-4 text-primary"></i>
+                            <i class="<?php echo esc_attr(get_theme_mod('about_vision_icon', 'bi-eye')); ?> display-4 text-primary"></i>
                         </div>
-                        <h3 class="mb-3">Our Vision</h3>
-                        <p>To become the most trusted and reliable visa service provider in Bali, known for our professionalism, efficiency, and customer-centric approach.</p>
+                        <h3 class="mb-3"><?php echo esc_html(get_theme_mod('about_vision_title', 'Our Vision')); ?></h3>
+                        <p><?php echo esc_html(get_theme_mod('about_vision_text', 'To become the most trusted and reliable visa service provider in Bali, known for our professionalism, efficiency, and customer-centric approach.')); ?></p>
                     </div>
                 </div>
             </div>
@@ -67,63 +67,74 @@ get_header();
     </div>
 </section>
 
-<!-- Team Section (Optional) -->
+<!-- Team Section -->
+<?php
+// Check if any team members are configured
+$has_team_members = false;
+for ($i = 1; $i <= 6; $i++) {
+    if (get_theme_mod("about_team_member_{$i}_name")) {
+        $has_team_members = true;
+        break;
+    }
+}
+
+if ($has_team_members) :
+?>
 <section class="section team-section">
     <div class="container">
         <div class="row mb-5">
             <div class="col-lg-12 text-center">
-                <p class="section-subtitle">Team</p>
-                <h2 class="section-title">Meet Our Experts</h2>
+                <p class="section-subtitle"><?php echo esc_html(get_theme_mod('about_team_section_subtitle', 'Team')); ?></p>
+                <h2 class="section-title"><?php echo esc_html(get_theme_mod('about_team_section_title', 'Meet Our Experts')); ?></h2>
             </div>
         </div>
         <div class="row g-4">
-            <div class="col-lg-4 col-md-6">
-                <div class="card team-card text-center">
-                    <div class="card-body p-4">
-                        <div class="team-image mb-3">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/team-placeholder.jpg" class="rounded-circle" width="120" height="120" alt="Team Member">
-                        </div>
-                        <h5 class="mb-1">John Doe</h5>
-                        <p class="text-muted mb-3">Visa Consultant</p>
-                        <div class="social-links">
-                            <a href="#" class="text-primary me-2"><i class="bi bi-linkedin"></i></a>
-                            <a href="#" class="text-primary"><i class="bi bi-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card team-card text-center">
-                    <div class="card-body p-4">
-                        <div class="team-image mb-3">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/team-placeholder.jpg" class="rounded-circle" width="120" height="120" alt="Team Member">
-                        </div>
-                        <h5 class="mb-1">Jane Smith</h5>
-                        <p class="text-muted mb-3">Immigration Specialist</p>
-                        <div class="social-links">
-                            <a href="#" class="text-primary me-2"><i class="bi bi-linkedin"></i></a>
-                            <a href="#" class="text-primary"><i class="bi bi-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card team-card text-center">
-                    <div class="card-body p-4">
-                        <div class="team-image mb-3">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/team-placeholder.jpg" class="rounded-circle" width="120" height="120" alt="Team Member">
-                        </div>
-                        <h5 class="mb-1">Michael Brown</h5>
-                        <p class="text-muted mb-3">Customer Service Manager</p>
-                        <div class="social-links">
-                            <a href="#" class="text-primary me-2"><i class="bi bi-linkedin"></i></a>
-                            <a href="#" class="text-primary"><i class="bi bi-envelope"></i></a>
+            <?php
+            for ($i = 1; $i <= 6; $i++) :
+                $member_name = get_theme_mod("about_team_member_{$i}_name");
+                $member_position = get_theme_mod("about_team_member_{$i}_position");
+                $member_image = get_theme_mod("about_team_member_{$i}_image");
+                $member_linkedin = get_theme_mod("about_team_member_{$i}_linkedin");
+                $member_email = get_theme_mod("about_team_member_{$i}_email");
+
+                if ($member_name) :
+            ?>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card team-card text-center">
+                        <div class="card-body p-4">
+                            <div class="team-image mb-3">
+                                <?php if ($member_image) : ?>
+                                    <img src="<?php echo esc_url($member_image); ?>" class="rounded-circle" width="120" height="120" alt="<?php echo esc_attr($member_name); ?>">
+                                <?php else : ?>
+                                    <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center" style="width: 120px; height: 120px;">
+                                        <i class="bi bi-person-circle display-3 text-muted"></i>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                            <h5 class="mb-1"><?php echo esc_html($member_name); ?></h5>
+                            <?php if ($member_position) : ?>
+                                <p class="text-muted mb-3"><?php echo esc_html($member_position); ?></p>
+                            <?php endif; ?>
+                            <?php if ($member_linkedin || $member_email) : ?>
+                                <div class="social-links">
+                                    <?php if ($member_linkedin) : ?>
+                                        <a href="<?php echo esc_url($member_linkedin); ?>" target="_blank" rel="noopener noreferrer" class="text-primary me-2" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                                    <?php endif; ?>
+                                    <?php if ($member_email) : ?>
+                                        <a href="mailto:<?php echo esc_attr($member_email); ?>" class="text-primary" aria-label="Email"><i class="bi bi-envelope"></i></a>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php
+                endif;
+            endfor;
+            ?>
         </div>
     </div>
 </section>
+<?php endif; ?>
 
 <?php get_footer(); ?>

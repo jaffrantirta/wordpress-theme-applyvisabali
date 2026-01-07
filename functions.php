@@ -580,6 +580,239 @@ function apply_visa_bali_customize_register($wp_customize) {
             'type' => 'url',
         ));
     }
+
+    // About Us Section
+    $wp_customize->add_section('about_us_section', array(
+        'title' => __('About Us Page', 'apply-visa-bali'),
+        'priority' => 37,
+        'description' => __('Customize the About Us page content', 'apply-visa-bali'),
+    ));
+
+    // Mission & Vision
+    $wp_customize->add_setting('about_mission_title', array(
+        'default' => 'Our Mission',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('about_mission_title', array(
+        'label' => __('Mission Title', 'apply-visa-bali'),
+        'section' => 'about_us_section',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('about_mission_icon', array(
+        'default' => 'bi-bullseye',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('about_mission_icon', array(
+        'label' => __('Mission Icon (Bootstrap Icon class)', 'apply-visa-bali'),
+        'section' => 'about_us_section',
+        'type' => 'text',
+        'description' => __('e.g., bi-bullseye, bi-target. See https://icons.getbootstrap.com/', 'apply-visa-bali'),
+    ));
+
+    $wp_customize->add_setting('about_mission_text', array(
+        'default' => 'To provide exceptional visa services that make international travel accessible and stress-free for everyone seeking to visit or stay in Bali and Indonesia.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    $wp_customize->add_control('about_mission_text', array(
+        'label' => __('Mission Text', 'apply-visa-bali'),
+        'section' => 'about_us_section',
+        'type' => 'textarea',
+    ));
+
+    $wp_customize->add_setting('about_vision_title', array(
+        'default' => 'Our Vision',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('about_vision_title', array(
+        'label' => __('Vision Title', 'apply-visa-bali'),
+        'section' => 'about_us_section',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('about_vision_icon', array(
+        'default' => 'bi-eye',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('about_vision_icon', array(
+        'label' => __('Vision Icon (Bootstrap Icon class)', 'apply-visa-bali'),
+        'section' => 'about_us_section',
+        'type' => 'text',
+        'description' => __('e.g., bi-eye, bi-binoculars. See https://icons.getbootstrap.com/', 'apply-visa-bali'),
+    ));
+
+    $wp_customize->add_setting('about_vision_text', array(
+        'default' => 'To become the most trusted and reliable visa service provider in Bali, known for our professionalism, efficiency, and customer-centric approach.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    $wp_customize->add_control('about_vision_text', array(
+        'label' => __('Vision Text', 'apply-visa-bali'),
+        'section' => 'about_us_section',
+        'type' => 'textarea',
+    ));
+
+    // Team Section
+    $wp_customize->add_setting('about_team_section_title', array(
+        'default' => 'Meet Our Experts',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('about_team_section_title', array(
+        'label' => __('Team Section Title', 'apply-visa-bali'),
+        'section' => 'about_us_section',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('about_team_section_subtitle', array(
+        'default' => 'Team',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('about_team_section_subtitle', array(
+        'label' => __('Team Section Subtitle', 'apply-visa-bali'),
+        'section' => 'about_us_section',
+        'type' => 'text',
+    ));
+
+    // Team Members (up to 6)
+    for ($i = 1; $i <= 6; $i++) {
+        $wp_customize->add_setting("about_team_member_{$i}_image", array(
+            'default' => '',
+            'sanitize_callback' => 'esc_url_raw',
+        ));
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "about_team_member_{$i}_image", array(
+            'label' => sprintf(__('Team Member %d - Photo', 'apply-visa-bali'), $i),
+            'section' => 'about_us_section',
+        )));
+
+        $wp_customize->add_setting("about_team_member_{$i}_name", array(
+            'default' => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+        $wp_customize->add_control("about_team_member_{$i}_name", array(
+            'label' => sprintf(__('Team Member %d - Name', 'apply-visa-bali'), $i),
+            'section' => 'about_us_section',
+            'type' => 'text',
+        ));
+
+        $wp_customize->add_setting("about_team_member_{$i}_position", array(
+            'default' => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+        $wp_customize->add_control("about_team_member_{$i}_position", array(
+            'label' => sprintf(__('Team Member %d - Position', 'apply-visa-bali'), $i),
+            'section' => 'about_us_section',
+            'type' => 'text',
+        ));
+
+        $wp_customize->add_setting("about_team_member_{$i}_linkedin", array(
+            'default' => '',
+            'sanitize_callback' => 'esc_url_raw',
+        ));
+        $wp_customize->add_control("about_team_member_{$i}_linkedin", array(
+            'label' => sprintf(__('Team Member %d - LinkedIn URL (Optional)', 'apply-visa-bali'), $i),
+            'section' => 'about_us_section',
+            'type' => 'url',
+        ));
+
+        $wp_customize->add_setting("about_team_member_{$i}_email", array(
+            'default' => '',
+            'sanitize_callback' => 'sanitize_email',
+        ));
+        $wp_customize->add_control("about_team_member_{$i}_email", array(
+            'label' => sprintf(__('Team Member %d - Email (Optional)', 'apply-visa-bali'), $i),
+            'section' => 'about_us_section',
+            'type' => 'email',
+        ));
+    }
+
+    // Contact Us Section
+    $wp_customize->add_section('contact_us_section', array(
+        'title' => __('Contact Us Page', 'apply-visa-bali'),
+        'priority' => 38,
+        'description' => __('Customize the Contact Us page content', 'apply-visa-bali'),
+    ));
+
+    // WhatsApp Contact
+    $wp_customize->add_setting('contact_whatsapp_text', array(
+        'default' => 'WhatsApp Us Now!',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('contact_whatsapp_text', array(
+        'label' => __('WhatsApp Button Text', 'apply-visa-bali'),
+        'section' => 'contact_us_section',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('contact_whatsapp_message', array(
+        'default' => 'Hello! I would like to inquire about your visa services.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    $wp_customize->add_control('contact_whatsapp_message', array(
+        'label' => __('WhatsApp Default Message', 'apply-visa-bali'),
+        'section' => 'contact_us_section',
+        'type' => 'textarea',
+    ));
+
+    // Email Contact
+    $wp_customize->add_setting('contact_email', array(
+        'default' => 'info@applyvisabali.com',
+        'sanitize_callback' => 'sanitize_email',
+    ));
+    $wp_customize->add_control('contact_email', array(
+        'label' => __('Contact Email Address', 'apply-visa-bali'),
+        'section' => 'contact_us_section',
+        'type' => 'email',
+    ));
+
+    $wp_customize->add_setting('contact_email_text', array(
+        'default' => 'Send us an email and we\'ll get back to you within 24 hours.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    $wp_customize->add_control('contact_email_text', array(
+        'label' => __('Email Card Description', 'apply-visa-bali'),
+        'section' => 'contact_us_section',
+        'type' => 'textarea',
+    ));
+
+    // Business Hours
+    $wp_customize->add_setting('contact_hours_title', array(
+        'default' => 'Business Hours',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('contact_hours_title', array(
+        'label' => __('Business Hours Title', 'apply-visa-bali'),
+        'section' => 'contact_us_section',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('contact_hours_weekdays', array(
+        'default' => 'Monday - Friday: 9:00 AM - 6:00 PM',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('contact_hours_weekdays', array(
+        'label' => __('Weekdays Hours', 'apply-visa-bali'),
+        'section' => 'contact_us_section',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('contact_hours_saturday', array(
+        'default' => 'Saturday: 9:00 AM - 2:00 PM',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('contact_hours_saturday', array(
+        'label' => __('Saturday Hours', 'apply-visa-bali'),
+        'section' => 'contact_us_section',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('contact_hours_sunday', array(
+        'default' => 'Sunday: Closed',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('contact_hours_sunday', array(
+        'label' => __('Sunday Hours', 'apply-visa-bali'),
+        'section' => 'contact_us_section',
+        'type' => 'text',
+    ));
 }
 add_action('customize_register', 'apply_visa_bali_customize_register');
 
